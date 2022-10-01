@@ -1,19 +1,27 @@
 # todo-list
 
-## Project setup
-```
-npm install
-```
+## 组件化
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1. 拆分静态组件：将组件按照结构或功能进行拆分，命名不要与 html 元素冲突。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+2. 实现动态组件：考虑好数据存放的未知，数据是一个组件在用，还是一些组件在用：
+   
+   如果是一个组件在用：那么只需要将数据放在需要数据的组件的自身就行。
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+   如果是一些组件在用：那么可以将数据放在它们共同的父组件上（状态提升）。
+
+3. 实现交互功能：从绑定事件开始。
+
+## 使用 props 进行组件间数据的传递
+
+1. 父组件 =》 子组件通信：
+   
+   直接由父组件将数据传递给子组件，子组件使用 props 进行接收。
+
+2. 子组件 =》 父组件通信：
+
+   在父组件中定义一个函数来操作数据，使用 props 将函数传递给子组件，子组件调用父组件传递来的函数对父组件的数据进行操作。
+
+3. 使用 v-model 时要切记：v-model 绑定的值不能是 props 传过来的值，因为 props 是不可以修改的！
+
+4. props 传过来的值如果是对象类型，修改对象中的属性时 Vue 不会报错，但不推荐这样做。
